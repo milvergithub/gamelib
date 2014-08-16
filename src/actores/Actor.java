@@ -2,14 +2,17 @@ package actores;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+
 import world.StageM;
 /**
- * @author simulacion
+ * @author milver
  */
 public class Actor extends JComponent{
-    
+
+    private static final long serialVersionUID = 1L;
     private int rejilla;
     private StageM stage;
     private ImageIcon imagen;
@@ -37,7 +40,9 @@ public class Actor extends JComponent{
     protected void girar(int grads){
         
     }
+    @Override
     public void paint(Graphics g){
+        @SuppressWarnings("unused")
         Dimension d=getSize();
         g.drawImage(imagen.getImage(), 0, 0,getWidth(),getHeight(),null);
         setOpaque(false);
