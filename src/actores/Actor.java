@@ -41,9 +41,10 @@ public class Actor extends JComponent{
     }
     @Override
     public void paint(Graphics g){
-        Graphics2D g2d = (Graphics2D) g;
-        AffineTransform tx = AffineTransform.getRotateInstance(rotacion, icono.getIconWidth()/2, icono.getIconHeight()/2);
-        g2d.drawImage(icono.getImage(), tx, this);
+    	super.paintComponents(g);
+		Graphics2D g2d=(Graphics2D)g;
+		g2d.rotate(getRotacion()* Math.PI / 180.0,getWidth()/2,getHeight()/2);
+		g2d.drawImage(icono.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
     public void setImagen(String imagen) {
         this.icono = new ImageIcon(getClass().getResource(imagen));
