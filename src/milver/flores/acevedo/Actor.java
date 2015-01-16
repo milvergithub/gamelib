@@ -1,13 +1,12 @@
-package actores;
+package milver.flores.acevedo;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-
-import world.StageM;
 /**
  * @author milver
  */
@@ -15,32 +14,24 @@ public class Actor extends JComponent{
 
     private static final long serialVersionUID = 1L;
     private double rotacion = 0.0;
-    private int rejilla;
     private StageM stage;
     private ImageIcon icono = null;
     private int tamX,tamY;
     public Actor(StageM s){
         tamX=50;
         tamY=50;
-        setSize(getTamX(),getTamX());
+        setSize(getTamX(),getTamY());
         stage=s;
-        rejilla=5;
     }
-    public void mover(){
-        this.setLocation(this.getX()+getRejilla(), this.getY());
-    }
-    public void setRejilla(int n){
-        this.rejilla=n;
-    }
-    private int getRejilla(){
-        return rejilla;
+    public void mover(Point punto){
+        this.setLocation(punto.x-this.getWidth()/2, punto.y-this.getHeight()/2);
     }
     protected void remover(){
         stage.remove(this);
         stage.repaint();
     }
     @Override
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g){
     	super.paintComponents(g);
 		Graphics2D g2d=(Graphics2D)g;
 		g2d.rotate(getRotacion()* Math.PI / 180.0,getWidth()/2,getHeight()/2);
@@ -48,6 +39,9 @@ public class Actor extends JComponent{
     }
     public void setImagen(String imagen) {
         this.icono = new ImageIcon(getClass().getResource(imagen));
+    }
+    private ImageIcon getIconoImagen(){
+    	return icono;
     }
     public double getRotacion() {
         return this.rotacion;
